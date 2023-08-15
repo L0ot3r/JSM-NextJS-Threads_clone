@@ -113,7 +113,7 @@ export async function addCommentToThread(
 		const commentThread = new Thread({
 			text: commentText,
 			author: userId,
-			parentId: threadId,
+			parentId: originalThread._id,
 		})
 
 		// Sauvegarder le commentaire dans la base de données
@@ -128,6 +128,8 @@ export async function addCommentToThread(
 		revalidatePath(path);
 
 	} catch (error: any) {
+		console.log(`Erreur à l'ajout du comment: ${error.message}`);
+		
 		throw new Error(
 			`Error adding comment to thread ${threadId}: ${error.message}`
 		);

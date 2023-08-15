@@ -4,7 +4,7 @@ import * as z from 'zod';
 import { ICommentProps } from '@/types';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import {
@@ -25,9 +25,8 @@ const Comment = ({
 	currentUserImg,
 }: ICommentProps) => {
 	const pathname = usePathname();
-	const router = useRouter();
 
-	const form = useForm({
+	const form = useForm<z.infer<typeof CommentValidation>>({
 		resolver: zodResolver(CommentValidation),
 		defaultValues: {
 			thread: '',
@@ -36,7 +35,7 @@ const Comment = ({
 
 	const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
 		await addCommentToThread(
-			threadId,
+			JSON.parse(threadId),
 			values.thread,
 			JSON.parse(currentUserId),
 			pathname
