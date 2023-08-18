@@ -3,6 +3,7 @@
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import { useOrganization } from '@clerk/nextjs';
 
 import {
 	Form,
@@ -23,6 +24,7 @@ import { createThread } from '@/lib/actions/thread.actions';
 function PostThread({ userId }: { userId: string }) {
 	const pathname = usePathname();
 	const router = useRouter();
+	const { organization } = useOrganization();
 
 	const form = useForm({
 		resolver: zodResolver(ThreadValidation),
@@ -36,7 +38,7 @@ function PostThread({ userId }: { userId: string }) {
 		await createThread({
 			text: values.thread,
 			author: userId,
-			communityId: null,
+			communityId: organization ? organization.id : null,
 			path: pathname,
 		});
 

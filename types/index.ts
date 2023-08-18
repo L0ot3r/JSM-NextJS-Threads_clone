@@ -63,6 +63,7 @@ export interface IProfileHeaderProps {
   username: string,
   imgUrl: string,
   bio: string,
+  type?: 'User' | 'Community',
 }
 
 export interface IThreadsTabProps {

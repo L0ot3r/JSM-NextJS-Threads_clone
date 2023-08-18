@@ -1,3 +1,4 @@
+import { formatDateString } from '@/lib/utils';
 import { IThreadProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -82,7 +83,26 @@ const ThreadCard = ({
 						</div>
 					</div>
 				</div>
+				{/* Delete Thread */}
+				{/* Comment logo */}
 			</div>
+			{!isComment && community && (
+				<Link
+					href={`/communities/${community.id}`}
+					className='mt-5 flex items-center gap-1'
+				>
+					<p className='text-subtle-medium text-gray-1'>
+						{formatDateString(createdAt)} - {community.name} Community
+					</p>
+					<Image
+						src={community.image}
+						alt={community.name}
+						width={14}
+						height={14}
+						className='rounded-full object-cover'
+					/>
+				</Link>
+			)}
 		</article>
 	);
 };
