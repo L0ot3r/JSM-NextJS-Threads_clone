@@ -140,3 +140,30 @@ export async function fetchAllUsers({
 		);
 	}
 }
+
+export async function getActivity(userId: string) {
+	try {
+		connectToDB()
+
+		const userThreads = await Thread.find({ author: userId })
+
+		// Récupération de tous les Threads IDs (réponses) depuis 'children'
+		const childThreadIds = userThreads.reduce((acc, userThread) => {
+			return acc.concat(userThread.children)
+		}, [])
+
+		const replies = await Thread.find({
+			_id: { $in: childThreadIds },
+			author: { $ne: userId },
+		}).populate({
+			path: 'author',
+			model: User,
+			select: '_id name image',
+		})
+
+		return replies;
+		
+	} catch (error: any) {
+		throw new Error(`Failed to fetch activity: ${error.message}`)
+	}
+}
