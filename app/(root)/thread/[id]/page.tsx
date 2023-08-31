@@ -47,7 +47,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 					<ThreadCard
 						key={childrenItem._id}
 						id={childrenItem._id}
-						currentUserId={user?.id || ''}
+						currentUserId={user?.id}
 						parentId={childrenItem.parentId}
 						author={childrenItem.author}
 						content={childrenItem.text}

@@ -40,7 +40,7 @@ const ThreadCard = ({
 						</Link>
 						<p className='mt-2 text-small-regular text-light-2'>{content}</p>
 						<div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
-							<div className='flex gap-3.5'>
+							<div className='flex items-center gap-3.5'>
 								<Image
 									src='/assets/heart-gray.svg'
 									alt='heart'
@@ -48,7 +48,10 @@ const ThreadCard = ({
 									height={24}
 									className='cursor-pointer object-contain'
 								/>
-								<Link href={`/thread/${id}`}>
+								<Link
+									href={`/thread/${id}`}
+									className='flex items-center gap-1'
+								>
 									<Image
 										src='/assets/reply.svg'
 										alt='reply'
@@ -72,21 +75,13 @@ const ThreadCard = ({
 									className='cursor-pointer object-contain'
 								/>
 							</div>
-
-							{isComment && comments.length > 0 && (
-								<Link href={`/thread/${id}`}>
-									<p className='mt-1 text-subtle-medium text-gray-1'>
-										{comments.length} repl{comments.length > 1 ? 'ies' : 'y'}
-									</p>
-								</Link>
-							)}
 						</div>
 					</div>
 				</div>
 				{/* Delete Thread */}
 				{/* Comment logo */}
 			</div>
-			{!isComment && community && (
+			{!isComment && community ? (
 				<Link
 					href={`/communities/${community.id}`}
 					className='mt-5 flex items-center gap-1'
@@ -102,7 +97,33 @@ const ThreadCard = ({
 						className='rounded-full object-cover'
 					/>
 				</Link>
+			) : (
+				<div className='mt-5 flex items-center gap-1'>
+					<p className='text-subtle-medium text-gray-1'>
+						{formatDateString(createdAt)}
+					</p>
+				</div>
 			)}
+			{!isComment && comments.length > 0 && (
+        <div className='ml-1 mt-3 flex items-center gap-2'>
+          {comments.slice(0, 2).map((comment, index) => (
+            <Image
+              key={index}
+              src={comment.author.image}
+              alt={`user_${index}`}
+              width={20}
+              height={20}
+              className={`${index !== 0 && "-ml-5"} rounded-full object-cover`}
+            />
+          ))}
+
+          <Link href={`/thread/${id}`}>
+            <p className='mt-1 text-subtle-medium text-gray-1'>
+              {comments.length} commentair{comments.length > 1 ? "es" : "e"}
+            </p>
+          </Link>
+        </div>
+      )}
 		</article>
 	);
 };
