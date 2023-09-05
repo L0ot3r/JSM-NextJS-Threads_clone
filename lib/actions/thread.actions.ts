@@ -50,7 +50,7 @@ export async function fetchPosts(pageNumber = 1, pageSize = 20) {
   return { posts, isNext };
 }
 
-export async function createThread({ text, author, communityId, path }: IThreadParams
+export async function createThread({ text, author, communityId, path, imgThread }: IThreadParams
 ) {
   try {
     connectToDB();
@@ -63,6 +63,7 @@ export async function createThread({ text, author, communityId, path }: IThreadP
     const createdThread = await Thread.create({
       text,
       author,
+      imgThread,
       community: communityIdObject, // Assign communityId if provided, or leave it null for personal account
     });
 

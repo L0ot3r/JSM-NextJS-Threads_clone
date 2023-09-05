@@ -22,6 +22,7 @@ export interface IProfileParams {
 export interface IThreadParams {
   text: string,
   author: string,
+  imgThread?: string,
   communityId: string | null,
   path: string
 }
@@ -35,6 +36,7 @@ export interface IThreadProps {
     image: string,
     id: string,
   },
+  imgThread: string,
 	content: string,
 	community: {
     name: string,

@@ -13,6 +13,7 @@ const ThreadCard = ({
 	createdAt,
 	comments,
 	isComment,
+	imgThread
 }: IThreadProps) => {
 	return (
 		<article
@@ -39,6 +40,15 @@ const ThreadCard = ({
 							<h4 className='text-base-semibold text-light-1'>{author.name}</h4>
 						</Link>
 						<p className='mt-2 text-small-regular text-light-2'>{content}</p>
+						{imgThread && (
+							<Image 
+								src={imgThread}
+								alt='thread img'
+								width={500}
+								height={500}
+								className='mt-2 w-full rounded-xl object-cover'
+							/>
+						)}
 						<div className={`${isComment && 'mb-10'} mt-5 flex flex-col gap-3`}>
 							<div className='flex items-center gap-3.5'>
 								<Image
