@@ -1,9 +1,9 @@
-import { currentUser } from '@clerk/nextjs';
-import { redirect } from 'next/navigation';
-
-import { fetchUser, getActivity } from '@/lib/actions/user.actions';
 import Link from 'next/link';
 import Image from 'next/image';
+import { redirect } from 'next/navigation';
+
+import { currentUser } from '@clerk/nextjs';
+import { fetchUser, getActivity } from '@/lib/actions/user.actions';
 
 import { format } from 'date-fns';
 
@@ -17,9 +17,6 @@ const Page = async () => {
   if(!userInfo.onboarded) redirect('/onboarding');
 
   const activity = await getActivity(userInfo._id);
-
-  console.log(activity);
-  
 
   return (
     <section>

@@ -1,7 +1,9 @@
-import { fetchUserPosts } from '@/lib/actions/user.actions';
-import { IThreadProps, IThreadsTabProps } from '@/types';
+import { IThreadsTabProps } from '@/types';
 import { redirect } from 'next/navigation';
+
 import { ThreadCard } from '../cards';
+
+import { fetchUserPosts } from '@/lib/actions/user.actions';
 import { fetchCommunityPosts } from '@/lib/actions/community.actions';
 
 const ThreadsTab = async ({
@@ -27,6 +29,7 @@ const ThreadsTab = async ({
 					id={thread._id}
 					currentUserId={currentUserId}
 					parentId={thread.parentId}
+					imgThread={thread.imgThread}
 					author={
 						accountType === 'User'
 							? { name: result.name, image: result.image, id: result.id }

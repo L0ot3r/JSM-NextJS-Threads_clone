@@ -1,6 +1,6 @@
-import { IProfileHeaderProps } from '@/types';
-
 import Image from 'next/image';
+
+import { IProfileHeaderProps } from '@/types';
 
 const ProfileHeader = ({
 	accountId,
@@ -9,7 +9,7 @@ const ProfileHeader = ({
 	username,
 	imgUrl,
 	bio,
-	type
+	type,
 }: IProfileHeaderProps) => {
 	return (
 		<div className='flex w-full flex-col justify-start'>
@@ -21,7 +21,7 @@ const ProfileHeader = ({
 							alt={name}
 							fill
 							className='rounded-full object-cover shadow-2xl'
-							sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+							sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
 						/>
 					</div>
 					<div className='flex-1'>

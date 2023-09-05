@@ -13,7 +13,7 @@ const ThreadCard = ({
 	createdAt,
 	comments,
 	isComment,
-	imgThread
+	imgThread,
 }: IThreadProps) => {
 	return (
 		<article
@@ -41,7 +41,7 @@ const ThreadCard = ({
 						</Link>
 						<p className='mt-2 text-small-regular text-light-2'>{content}</p>
 						{imgThread && (
-							<Image 
+							<Image
 								src={imgThread}
 								alt='thread img'
 								width={500}
@@ -115,25 +115,25 @@ const ThreadCard = ({
 				</div>
 			)}
 			{!isComment && comments.length > 0 && (
-        <div className='ml-1 mt-3 flex items-center gap-2'>
-          {comments.slice(0, 2).map((comment, index) => (
-            <Image
-              key={index}
-              src={comment.author.image}
-              alt={`user_${index}`}
-              width={20}
-              height={20}
-              className={`${index !== 0 && "-ml-5"} rounded-full object-cover`}
-            />
-          ))}
+				<div className='ml-1 mt-3 flex items-center gap-2'>
+					{comments.slice(0, 2).map((comment, index) => (
+						<Image
+							key={index}
+							src={comment.author.image}
+							alt={`user_${index}`}
+							width={20}
+							height={20}
+							className={`${index !== 0 && '-ml-5'} rounded-full object-cover`}
+						/>
+					))}
 
-          <Link href={`/thread/${id}`}>
-            <p className='mt-1 text-subtle-medium text-gray-1'>
-              {comments.length} commentair{comments.length > 1 ? "es" : "e"}
-            </p>
-          </Link>
-        </div>
-      )}
+					<Link href={`/thread/${id}`}>
+						<p className='mt-1 text-subtle-medium text-gray-1'>
+							{comments.length} commentair{comments.length > 1 ? 'es' : 'e'}
+						</p>
+					</Link>
+				</div>
+			)}
 		</article>
 	);
 };

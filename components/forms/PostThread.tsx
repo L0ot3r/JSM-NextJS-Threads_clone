@@ -1,5 +1,9 @@
 'use client';
 
+import Image from 'next/image';
+import { useState } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+
 import * as z from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -17,13 +21,10 @@ import {
 	Input,
 } from '@/components/ui';
 
-import { usePathname, useRouter } from 'next/navigation';
 
 import { ThreadValidation } from '@/lib/validations/thread';
 import { createThread } from '@/lib/actions/thread.actions';
 import { useUploadThing } from '@/lib/uploadthing';
-import Image from 'next/image';
-import { useState } from 'react';
 import { isBase64Image } from '@/lib/utils';
 
 function Preview({ img }: { img: string }) {

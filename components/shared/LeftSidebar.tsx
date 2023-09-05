@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+
 import { sidebarLinks } from '@/constants';
 import { SignedIn, SignOutButton, useAuth } from '@clerk/nextjs';
 
@@ -24,7 +25,11 @@ const LeftSidebar = () => {
 						<Link
 							key={link.label}
 							href={link.route}
-							className={`leftsidebar_link ${isActive ? 'bg-primary-500' : 'hover:bg-slate-600 transition duration-300 ease-in-out'} `}
+							className={`leftsidebar_link ${
+								isActive
+									? 'bg-primary-500'
+									: 'hover:bg-slate-600 transition duration-300 ease-in-out'
+							} `}
 						>
 							<Image
 								src={link.imgURL}

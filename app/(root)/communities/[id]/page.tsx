@@ -1,14 +1,14 @@
 import Image from 'next/image';
 
-import { redirect } from 'next/navigation';
 import { communityTabs } from '@/constants';
 
 import { currentUser } from '@clerk/nextjs';
 
 import { ProfileHeader, ThreadsTab } from '@/components/shared';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui';
-import { fetchCommunityDetails } from '@/lib/actions/community.actions';
 import { UserCard } from '@/components/cards';
+
+import { fetchCommunityDetails } from '@/lib/actions/community.actions';
 
 const Page = async ({ params }: { params: { id: string } }) => {
 	const user = await currentUser();
