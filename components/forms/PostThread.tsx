@@ -21,7 +21,6 @@ import {
 	Input,
 } from '@/components/ui';
 
-
 import { ThreadValidation } from '@/lib/validations/thread';
 import { createThread } from '@/lib/actions/thread.actions';
 import { useUploadThing } from '@/lib/uploadthing';
@@ -53,7 +52,7 @@ function PostThread({ userId }: { userId: string }) {
 		defaultValues: {
 			thread: '',
 			accountId: userId,
-			imgThread: '',
+			imgThread: '' || undefined,
 		},
 	});
 
@@ -85,10 +84,10 @@ function PostThread({ userId }: { userId: string }) {
 	};
 
 	const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-
 		// For image upload
 		const blob = values.imgThread;
-		const hasImageAdded = isBase64Image(blob);
+
+		const hasImageAdded = blob ? isBase64Image(blob) : false;
 		if (hasImageAdded) {
 			const imgRes = await startUpload(files);
 
@@ -107,7 +106,6 @@ function PostThread({ userId }: { userId: string }) {
 
 		router.push('/');
 	};
-	
 
 	return (
 		<>
@@ -152,12 +150,6 @@ function PostThread({ userId }: { userId: string }) {
 					<Button type='submit' className='bg-primary-500'>
 						Post Thread
 					</Button>
-					{/* {files.length > 0 && (
-						<>
-							<h1 className='text-light-1'>Preview</h1>
-							<Preview img={files[0]} />
-						</>
-					)} */}
 				</form>
 			</Form>
 		</>

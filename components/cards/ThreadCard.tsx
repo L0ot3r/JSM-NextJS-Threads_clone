@@ -3,6 +3,9 @@ import { IThreadProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
+
+import { DeleteBtn } from '../shared';	
+
 const ThreadCard = ({
 	id,
 	currentUserId,
@@ -89,6 +92,7 @@ const ThreadCard = ({
 					</div>
 				</div>
 				{/* Delete Thread */}
+				{currentUserId === author.id && <DeleteBtn  threadID={id} />}
 				{/* Comment logo */}
 			</div>
 			{!isComment && community ? (
